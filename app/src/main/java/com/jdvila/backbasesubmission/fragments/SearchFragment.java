@@ -61,7 +61,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
     }
 
     private void setViews(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        searchView = view.findViewById(R.id.search);
+        searchView = view.findViewById(R.id.city_searchview);
         searchView.setOnQueryTextListener(this);
         cityCountryRecyclerView = view.findViewById(R.id.recyclerView);
         cityCountryRecyclerView.setAdapter(new CityAdapter(cityList));

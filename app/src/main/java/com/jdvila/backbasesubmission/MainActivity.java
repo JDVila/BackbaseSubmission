@@ -34,13 +34,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void logResults(List<City> cityList) {
-        for (int i = 0; i < cityList.size(); i++) {
-            Log.d("Jose", cityList.get(i).getName() + ", " + cityList.get(i).getCountry());
-        }
-    }
-
-    @Override
     public void loadJSONFromAsset(final String asset) {
         startProgressDialog();
         Runnable runnable = new Runnable() {
@@ -103,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         CityMapsFragment cityMapsFragment = CityMapsFragment.newInstance(lat, lon, name);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         fragmentTransaction.replace(R.id.fragment_container_frameLayout, cityMapsFragment);
         fragmentTransaction.addToBackStack(getResources().getString(R.string.maps_backstack_key));
         fragmentTransaction.commit();

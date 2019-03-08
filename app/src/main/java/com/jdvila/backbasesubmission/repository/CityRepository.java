@@ -12,6 +12,7 @@ import java.util.List;
 
 public class CityRepository implements MainContract.Model {
 
+    private static final String ASSET = "cities.json";
     private static CityRepository instance;
     private final MainContract.Presenter presenter;
     private List<City> sortedCityList;
@@ -36,21 +37,32 @@ public class CityRepository implements MainContract.Model {
         sortList(getDataFromSource(data));
     }
 
+    @Override
+    public List<City> getSortedData() {
+        return sortedCityList;
+    }
+
+
     private List<City> getDataFromSource(String data) {
         Type type = new TypeToken<List<City>>() {
         }.getType();
         return new Gson().fromJson(data, type);
     }
 
-    private void sortList(List<City> unsortedList) {
+    @Override
+    public void sortList(List<City> unsortedList) {
         Collections.sort(unsortedList);
         sortedCityList = unsortedList;
-        presenter.returnData(sortedCityList);
+        if(presenter != null) {
+            presenter.returnData(sortedCityList);
+        }
     }
 
     @Override
     public void loadData() {
-        presenter.getJsonData("cities.json");
+        presenter.getJsonData(ASSET);
     }
+
+
 
 }

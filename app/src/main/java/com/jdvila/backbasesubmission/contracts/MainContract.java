@@ -8,6 +8,8 @@ public interface MainContract {
     interface Model {
         void loadData();
         void getData(String data);
+        void sortList(List<City> unsortedList);
+        List<City> getSortedData();
     }
 
     interface View {
@@ -15,7 +17,6 @@ public interface MainContract {
         void startProgressDialog();
         void stopProgressDialog();
         void loadJSONFromAsset(final String asset);
-        void logResults(List<City> data);
     }
 
     interface Presenter {

@@ -8,4 +8,6 @@
     <string name="dialog_title">Data is Loading</string>
     <string name="dialog_body">Please wait&#8230; ⌛</string>
     <string name="maps_backstack_key">maps</string>
+    <string name="json_filename_asset"></string>
+    <string name="search_hint">Search for a City</string>
 </resources>

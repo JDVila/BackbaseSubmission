@@ -39,7 +39,6 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void returnData(List<City> data) {
         this.initViews(data);
-        view.logResults(data);
         view.stopProgressDialog();
     }
 
