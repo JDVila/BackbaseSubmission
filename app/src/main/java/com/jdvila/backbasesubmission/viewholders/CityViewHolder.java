@@ -18,14 +18,14 @@ public class CityViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onBind(final City city) {
-        String s = city.getName() + ", " + city.getCountry();
+        final String name = city.getName() + ", " + city.getCountry();
         final String lat = city.getCoord().getLat();
         final String lon = city.getCoord().getLon();
-        textView.setText(s);
+        textView.setText(name);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((SearchFragment.OnDataChangedListener)itemView.getContext()).onSelectionMade(lat, lon);
+                ((SearchFragment.OnDataChangedListener)itemView.getContext()).onSelectionMade(lat, lon, name);
             }
         });
     }

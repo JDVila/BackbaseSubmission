@@ -68,9 +68,9 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         cityCountryRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    public void onCitySelection(String lat, String lon) {
+    public void onCitySelection(String lat, String lon, String name) {
         if (onDataChangedListener != null) {
-            onDataChangedListener.onSelectionMade(lat, lon);
+            onDataChangedListener.onSelectionMade(lat, lon, name);
         }
     }
 
@@ -110,6 +110,6 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 
     public interface OnDataChangedListener {
 
-        void onSelectionMade(String lat, String lon);
+        void onSelectionMade(String lat, String lon, String name);
     }
 }

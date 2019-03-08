@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.jdvila.backbasesubmission.contracts.MainContract;
+import com.jdvila.backbasesubmission.fragments.CityMapsFragment;
 import com.jdvila.backbasesubmission.fragments.SearchFragment;
 import com.jdvila.backbasesubmission.models.City;
 import com.jdvila.backbasesubmission.presenters.MainPresenter;
@@ -68,13 +69,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         SearchFragment searchFragment = SearchFragment.newInstance(data);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.search_frameLayout, searchFragment);
+        fragmentTransaction.replace(R.id.fragment_container_frameLayout, searchFragment);
         fragmentTransaction.commit();
     }
 
     @Override
     public void startProgressDialog() {
         dialog = new ProgressDialog(this);
+        dialog.setTitle(getResources().getString(R.string.dialog_title));
+        dialog.setMessage(getResources().getString(R.string.dialog_body));
         dialog.show();
     }
 
@@ -96,8 +99,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void onSelectionMade(String lat, String lon) {
-
+    public void onSelectionMade(String lat, String lon, String name) {
+        CityMapsFragment cityMapsFragment = CityMapsFragment.newInstance(lat, lon, name);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container_frameLayout, cityMapsFragment);
+        fragmentTransaction.commit();
     }
-
 }
