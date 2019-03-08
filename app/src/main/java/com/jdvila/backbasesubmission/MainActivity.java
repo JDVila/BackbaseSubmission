@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container_frameLayout, cityMapsFragment);
+        fragmentTransaction.addToBackStack(getResources().getString(R.string.maps_backstack_key));
         fragmentTransaction.commit();
     }
 }
