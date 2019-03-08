@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Backbase Application - Jose Vila</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="on_failure">Could not load information - please try again later</string>
+    <string name="on_success">success</string>
+    <string name="edittext_hint">Please Search for a City Here</string>
+</resources>
