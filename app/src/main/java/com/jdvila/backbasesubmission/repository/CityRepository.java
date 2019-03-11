@@ -17,6 +17,7 @@ public class CityRepository implements MainContract.Model {
     private final MainContract.Presenter presenter;
     private List<City> sortedCityList;
 
+    //the city repository should be injected into the presenter not the other way around. This frees up your repository to be used anywhere not just in a presenter class. Your presenters should be taking in the dependencies they need, not be provided to the dependencies.
     private CityRepository(MainContract.Presenter presenter) {
         this.presenter = presenter;
     }
@@ -44,8 +45,7 @@ public class CityRepository implements MainContract.Model {
 
 
     private List<City> getDataFromSource(String data) {
-        Type type = new TypeToken<List<City>>() {
-        }.getType();
+        Type type = new TypeToken<List<City>>(){}.getType();
         return new Gson().fromJson(data, type);
     }
 
@@ -62,7 +62,4 @@ public class CityRepository implements MainContract.Model {
     public void loadData() {
         presenter.getJsonData(ASSET);
     }
-
-
-
 }

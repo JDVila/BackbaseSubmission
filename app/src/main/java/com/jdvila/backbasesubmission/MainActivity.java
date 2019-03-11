@@ -21,7 +21,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View, SearchFragment.OnDataChangedListener {
-
     private ProgressDialog dialog;
     private MainContract.Presenter mainPresenter;
 
@@ -30,9 +29,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainPresenter = new MainPresenter(this);
+        //this should probably be called after attaching the view. Potentially your fetching could return before onStart is called. Effectively crashing your app when attempting to update the views because the view hasn't been attached yet.
         mainPresenter.fetchData();
     }
 
+    //this should be part of the presenter. You wanna avoid performing any logic in the views.
     @Override
     public void loadJSONFromAsset(final String asset) {
         startProgressDialog();
